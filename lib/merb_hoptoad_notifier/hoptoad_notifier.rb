@@ -31,8 +31,8 @@ module Merb
         options = {
           :api_key          => HoptoadNotifier.api_key,
           :url              => "#{request.protocol}://#{request.host}#{request.path}",
-          :component        => request.params['controller'],
-          :action           => request.params['action'],
+          :component        => request.params['controller'].to_s, # Hoptoad can't parse symbols
+          :action           => request.params['action'].to_s,
           :request          => request,
           :framework_env    => Merb.env,
           :notifier_name    => 'Merb::HoptoadNotifier',
